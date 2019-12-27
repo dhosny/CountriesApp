@@ -9,6 +9,7 @@ target 'CountriesApp' do
     pod 'SVProgressHUD'
     pod 'IQKeyboardManagerSwift'
     pod 'Alamofire', '~> 4.0'
+    pod 'RealmSwift'
   target 'CountriesAppTests' do
     inherit! :search_paths
     # Pods for testing
