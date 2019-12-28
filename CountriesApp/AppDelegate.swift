@@ -19,12 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         // Override point for customization after application launch.
         //print(Realm.Configuration.defaultConfiguration.fileURL!)
-         IQKeyboardManager.shared.enable = true
-        let countryGateWay = CountryGateway(apiClient: APIClient())
-        countryGateWay.getCountries(){
-            (country, msg, states) in
-            
-        }
+        IQKeyboardManager.shared.enable = true
+        
         return true
     }
 

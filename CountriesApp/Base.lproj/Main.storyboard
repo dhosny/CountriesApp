@@ -54,21 +54,65 @@
             </objects>
             <point key="canvasLocation" x="965.60000000000002" y="46.326836581709152"/>
         </scene>
-        <!--View Controller-->
+        <!--Country ListVC-->
         <scene sceneID="FnG-gE-Eg4">
             <objects>
-                <viewController id="Tg8-kz-ICl" sceneMemberID="viewController">
+                <viewController id="Tg8-kz-ICl" customClass="CountryListVC" customModule="CountriesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cEC-qA-aud">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="wRp-qq-ICb">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="xi3-i2-soa"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sm6-gE-E44">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="countryCell" textLabel="e4w-Ml-ZOd" style="IBUITableViewCellStyleDefault" id="YFL-38-sNo">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YFL-38-sNo" id="Nc9-x6-13A">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="e4w-Ml-ZOd">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wRp-qq-ICb" firstAttribute="leading" secondItem="Fvb-A5-FJv" secondAttribute="leading" id="1PI-rO-9yZ"/>
+                            <constraint firstItem="sm6-gE-E44" firstAttribute="top" secondItem="wRp-qq-ICb" secondAttribute="bottom" id="FDR-jc-0LA"/>
+                            <constraint firstItem="wRp-qq-ICb" firstAttribute="trailing" secondItem="Fvb-A5-FJv" secondAttribute="trailing" id="IPQ-Y6-JGg"/>
+                            <constraint firstItem="sm6-gE-E44" firstAttribute="bottom" secondItem="Fvb-A5-FJv" secondAttribute="bottom" id="OIg-AL-RkN"/>
+                            <constraint firstItem="wRp-qq-ICb" firstAttribute="top" secondItem="Fvb-A5-FJv" secondAttribute="top" id="Y5G-Ok-rpw"/>
+                            <constraint firstItem="sm6-gE-E44" firstAttribute="leading" secondItem="Fvb-A5-FJv" secondAttribute="leading" id="i2r-Sh-kiO"/>
+                            <constraint firstItem="sm6-gE-E44" firstAttribute="trailing" secondItem="Fvb-A5-FJv" secondAttribute="trailing" id="zyZ-n0-Pek"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Fvb-A5-FJv"/>
                     </view>
                     <navigationItem key="navigationItem" id="8lP-jt-P6T"/>
+                    <connections>
+                        <outlet property="tableView" destination="sm6-gE-E44" id="i4c-8P-vK0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogy-Od-gX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="-502"/>
+            <point key="canvasLocation" x="1797.5999999999999" y="-502.39880059970017"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1yi-pv-xXU">

@@ -13,7 +13,7 @@ class CountryGateway {
     
     let apiClient: APIClient
     
-    init(apiClient: APIClient) {
+    init(apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
     }
     
@@ -51,6 +51,8 @@ class CountryGateway {
                 }
                 completion(countries, msg, status)
             }
+        }else{
+            completion(countries, NSLocalizedString("Done", comment: ""), 1)
         }
         
     }
