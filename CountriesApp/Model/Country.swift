@@ -11,7 +11,7 @@ class Country: Object {
 
     @objc dynamic var alpha2Code: String!
 	@objc dynamic var capital: String!
-    var currencies = List<Currency>()
+    var currencies: List<Currency>! = List<Currency>()
 	@objc dynamic var name: String!
     @objc dynamic var isSelected: Bool = false
     

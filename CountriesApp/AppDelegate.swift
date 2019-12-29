@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         // Override point for customization after application launch.
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        IQKeyboardManager.shared.enable = true
+        //IQKeyboardManager.shared.enable = true
         
         return true
     }

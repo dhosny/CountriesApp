@@ -14,7 +14,7 @@
 		04CB6B3423B580B600C9F93A /* CountriesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B3323B580B600C9F93A /* CountriesAppTests.swift */; };
 		04CB6B4223B584F000C9F93A /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4023B584F000C9F93A /* Country.swift */; };
 		04CB6B4323B584F000C9F93A /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4123B584F000C9F93A /* Currency.swift */; };
-		04CB6B4623B58CDF00C9F93A /* LocalCountriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4523B58CDF00C9F93A /* LocalCountriesManager.swift */; };
+		04CB6B4623B58CDF00C9F93A /* RealmLocalCountriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4523B58CDF00C9F93A /* RealmLocalCountriesManager.swift */; };
 		04CB6B4823B59F7600C9F93A /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4723B59F7500C9F93A /* ApiClient.swift */; };
 		04CB6B4A23B59F8600C9F93A /* CountryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4923B59F8600C9F93A /* CountryGateway.swift */; };
 		04CB6B4E23B5A02900C9F93A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CB6B4C23B5A02800C9F93A /* Config.swift */; };
@@ -51,7 +51,7 @@
 		04CB6B3523B580B700C9F93A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04CB6B4023B584F000C9F93A /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		04CB6B4123B584F000C9F93A /* Currency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		04CB6B4523B58CDF00C9F93A /* LocalCountriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCountriesManager.swift; sourceTree = "<group>"; };
+		04CB6B4523B58CDF00C9F93A /* RealmLocalCountriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmLocalCountriesManager.swift; sourceTree = "<group>"; };
 		04CB6B4723B59F7500C9F93A /* ApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		04CB6B4923B59F8600C9F93A /* CountryGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryGateway.swift; sourceTree = "<group>"; };
 		04CB6B4C23B5A02800C9F93A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		04CB6B4423B5852100C9F93A /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				04CB6B4523B58CDF00C9F93A /* LocalCountriesManager.swift */,
+				04CB6B4523B58CDF00C9F93A /* RealmLocalCountriesManager.swift */,
 				04CB6B4723B59F7500C9F93A /* ApiClient.swift */,
 				04CB6B4923B59F8600C9F93A /* CountryGateway.swift */,
 			);
@@ -412,7 +412,7 @@
 			files = (
 				04CB6B4223B584F000C9F93A /* Country.swift in Sources */,
 				04CB6B4323B584F000C9F93A /* Currency.swift in Sources */,
-				04CB6B4623B58CDF00C9F93A /* LocalCountriesManager.swift in Sources */,
+				04CB6B4623B58CDF00C9F93A /* RealmLocalCountriesManager.swift in Sources */,
 				04CB6B6123B7F62F00C9F93A /* DisplayMode.swift in Sources */,
 				04CB6B5D23B7526F00C9F93A /* State.swift in Sources */,
 				04CB6B5B23B613DC00C9F93A /* CountryListViewModel.swift in Sources */,

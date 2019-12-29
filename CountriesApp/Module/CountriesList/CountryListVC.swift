@@ -30,14 +30,18 @@ class CountryListVC: UIViewController {
         // init view model
         initVM()
         
+        //get current location
+        getCurrentLocation()
+        
     }
     
     func initView() {
         self.navigationItem.title = NSLocalizedString("Country List", comment: "")
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         configSearchBar()
-        getCurrentLocation()
     }
     
     func setAddNavigationBarRightBtn() {
@@ -171,6 +175,7 @@ class CountryListVC: UIViewController {
     
 }
 
+//MARK: -- Table View
 extension CountryListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -225,6 +230,7 @@ extension CountryListVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: -- UI Event Handler
 extension CountryListVC {
     
     @objc func addCountryBtnPressed (sender: Any){
@@ -238,7 +244,7 @@ extension CountryListVC {
     
 }
 
-
+//MARK: -- Segue
 extension CountryListVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CountryDetailsVC,
@@ -248,7 +254,7 @@ extension CountryListVC {
     }
 }
 
-//  MARK: -- Search Delegate
+//MARK: -- Search Delegate
 extension CountryListVC: UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -262,10 +268,10 @@ extension CountryListVC: UISearchBarDelegate{
     }
 }
 
+//MARK: -- Location
 extension CountryListVC: CLLocationManagerDelegate {
-    //MARK: -- Location
+
     func getCurrentLocation() {
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -283,7 +289,7 @@ extension CountryListVC: CLLocationManagerDelegate {
             case .restricted, .denied:
                 // Disable location features
                 self.viewModel.setLocationService(states: false)
-                let alert = UIAlertController(title: NSLocalizedString("Allow Location Access", comment: ""), message: NSLocalizedString("MyApp needs access to your location. Turn on Location Services in your device settings.", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: NSLocalizedString("Allow Location Access", comment: ""), message: NSLocalizedString("the App needs access to your location. Turn on Location Services in your device settings.", comment: ""), preferredStyle: UIAlertController.Style.alert)
                 
                 // Button to Open Settings
                 alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
