@@ -72,6 +72,7 @@ class CountryListVC: UIViewController {
         searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.showsCancelButton = false
+        definesPresentationContext = true
     }
     
     func initVM() {
@@ -128,19 +129,16 @@ class CountryListVC: UIViewController {
                     UIView.animate(withDuration: 0.2, animations: {
                         self.navigationItem.title = NSLocalizedString("Selected A Country", comment: "")
                         self.setCancelNavigationBarRightBtn()
-                        self.tableView.setContentOffset( CGPoint(x: 0, y: 0) , animated: true)
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                        self.tableView.tableHeaderView = self.searchController.searchBar
-                        self.searchController.searchBar.isHidden = false
+                        self.navigationItem.searchController = self.searchController
+                        self.navigationItem.hidesSearchBarWhenScrolling = false
                     })
                 case .selectedCountries:
                     UIView.animate(withDuration: 0.2, animations: {
                         self.navigationItem.title = NSLocalizedString("Country List", comment: "")
                         self.setAddNavigationBarRightBtn()
-                        self.tableView.tableHeaderView = nil
-                        self.searchController.searchBar.isHidden = true
-                        self.tableView.setContentOffset( CGPoint(x: 0, y: 60.0) , animated: true)
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.navigationItem.searchController = nil
                         
                     })
                 }
