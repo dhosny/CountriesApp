@@ -9,22 +9,43 @@
 import UIKit
 
 class CountryDetailsVC: UIViewController {
+    
+    var country: Country!
 
+    @IBOutlet weak var capitalLbl: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func initView () {
+        self.navigationItem.title = country.name
+        self.capitalLbl.text = country.capital
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-    */
 
+}
+
+extension CountryDetailsVC: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return NSLocalizedString("Currencies: ", comment: "")
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return country.currencies.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
+        
+        cell.textLabel!.text = country.currencies[indexPath.row].name
+        
+        return cell
+    }
+    
+    
 }

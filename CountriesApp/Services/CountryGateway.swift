@@ -40,7 +40,7 @@ class CountryGateway {
     }
     
     func getCountries (completion: @escaping (_ responce : [Country],_ message : String,_ status : Int) -> ()){
-        let countries = LocalCountriesManager.shared.getCountries()
+        let countries = LocalCountriesManager.shared.getAllCountries()
         //check number of stored countries
         if (countries.count == 0){
             //load from api
@@ -55,6 +55,24 @@ class CountryGateway {
             completion(countries, NSLocalizedString("Done", comment: ""), 1)
         }
         
+    }
+    
+    func getSelectedCountries () -> [Country]{
+        let countries = LocalCountriesManager.shared.getSelectedCountries()
+        return countries
+    }
+    
+    func getFilteredCountries (str: String) -> [Country]{
+        let countries = LocalCountriesManager.shared.getFilteredCountriesBy(name: str)
+        return countries
+    }
+    
+    func selectCountryBy(code: String){
+        LocalCountriesManager.shared.selectCountryBy(code: code)
+    }
+    
+    func unselectCountryBy(code: String){
+        LocalCountriesManager.shared.unSelectCountryBy(code: code)
     }
 
 }

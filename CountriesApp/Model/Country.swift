@@ -13,7 +13,7 @@ class Country: Object {
 	@objc dynamic var capital: String!
     var currencies = List<Currency>()
 	@objc dynamic var name: String!
-    var isSelected: Bool!
+    @objc dynamic var isSelected: Bool = false
     
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values

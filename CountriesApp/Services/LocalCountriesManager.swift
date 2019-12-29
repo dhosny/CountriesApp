@@ -17,10 +17,24 @@ class LocalCountriesManager{
         
     }
     
-    func getCountries() -> [Country] {
+    func getAllCountries() -> [Country] {
         // Get the default Realm
         let realm = try! Realm()
         let country = realm.objects(Country.self)
+        return Array(country)
+    }
+    
+    func getSelectedCountries() -> [Country] {
+        // Get the default Realm
+        let realm = try! Realm()
+        let country = realm.objects(Country.self).filter("isSelected == true")
+        return Array(country)
+    }
+    
+    func getFilteredCountriesBy(name: String) -> [Country] {
+        // Get the default Realm
+        let realm = try! Realm()
+        let country = realm.objects(Country.self).filter("name CONTAINS[c] '\(name)'");
         return Array(country)
     }
     
@@ -30,12 +44,41 @@ class LocalCountriesManager{
             realm.add(countries)
         }
     }
-    func addCountry (country: Country){
+    func selectCountry (country: Country){
         // Get the default Realm
         let realm = try! Realm()
-        // Persist your data easily
+        let c = realm.objects(Country.self).filter("alpha2Code == '\(country.alpha2Code ?? "")'").first
+
         try! realm.write {
-            realm.add(Object())
+            c?.isSelected = true
+        }
+    }
+    
+    func unSelectCountry (country: Country){
+        // Get the default Realm
+        let realm = try! Realm()
+        let c = realm.objects(Country.self).filter("alpha2Code == '\(country.alpha2Code ?? "")'").first
+
+        try! realm.write {
+            c?.isSelected = false
+        }
+    }
+    
+    func selectCountryBy (code: String){
+        // Get the default Realm
+        let realm = try! Realm()
+        let c = realm.objects(Country.self).filter("alpha2Code == '\(code)'").first
+        try! realm.write {
+            c?.isSelected = true
+        }
+    }
+    
+    func unSelectCountryBy (code: String){
+        // Get the default Realm
+        let realm = try! Realm()
+        let c = realm.objects(Country.self).filter("alpha2Code == '\(code)'").first
+        try! realm.write {
+            c?.isSelected = false
         }
     }
     

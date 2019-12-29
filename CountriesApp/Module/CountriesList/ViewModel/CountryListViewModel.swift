@@ -12,9 +12,27 @@ class CountryListViewModel {
 
     let countryGateway: CountryGateway
     
-    private var countriesList: [Country] = [Country](){
+    private var countriesList: [Country] = [Country]()
+    
+    private var selectedCountriesList: [Country] = [Country]()
+    
+    private var filteredCountriesList: [Country] = [Country]()
+    
+    var displayMode: DisplayMode = .selectedCountries {
         didSet {
             self.reloadTableViewClosure?()
+            self.updateViewUI?()
+        }
+    }
+    
+    private var displayedCountriesList: [Country]{
+        switch displayMode {
+        case .allCountries:
+            return countriesList
+        case .selectedCountries:
+            return selectedCountriesList
+        case .filteredCountries:
+            return filteredCountriesList
         }
     }
     
@@ -31,14 +49,15 @@ class CountryListViewModel {
     }
     
     var numberOfCells: Int {
-        return countriesList.count
+        return displayedCountriesList.count
     }
     
-    var selectedPhoto: Country?
+    var selectedCountry: Country?
     
     var reloadTableViewClosure: (()->())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
+    var updateViewUI: (()->())?
     
     init( countryGateway: CountryGateway = CountryGateway()) {
         self.countryGateway = countryGateway
@@ -58,28 +77,81 @@ class CountryListViewModel {
             }
             
             self.countriesList = country
+            self.initSelectedCountries()
+            self.displayMode = .selectedCountries
             self.state = .loaded
         }
     }
     
-    func getCountry(atIndex : Int) -> String{
-        return self.countriesList[atIndex].name
+    func initSelectedCountries (){
+        //add current country of eg if not detected
+        countryGateway.selectCountryBy(code: "EG")
+        //load Selected Countries
+        self.selectedCountriesList = self.countryGateway.getSelectedCountries()
     }
     
+    func getCountry(atIndex : Int) -> Country{
+        return self.displayedCountriesList[atIndex]
+    }
+    
+    func unselectCountry(atIndex : Int) {
+        countryGateway.unselectCountryBy(code: self.displayedCountriesList[atIndex].alpha2Code)
+        self.selectedCountriesList = countryGateway.getSelectedCountries()
+        self.displayMode = .selectedCountries
+    }
+    
+    func selectCountry(atIndex : Int) {
+        countryGateway.selectCountryBy(code: self.displayedCountriesList[atIndex].alpha2Code)
+        self.selectedCountriesList = countryGateway.getSelectedCountries()
+        self.displayMode = .selectedCountries
+    }
+    
+    func canDelete () -> Bool {
+        return (self.displayMode == .selectedCountries)
+    }
     
 }
 
 extension CountryListViewModel {
+    
+    func userPressedAddBtn(){
+        self.displayMode = .allCountries
+    }
+    
+    func userPressedCancelAddBtn() {
+        self.displayMode = .selectedCountries
+    }
+    
+    func userSearchedForCountry( searchTxt: String) {
+        if searchTxt == "" {
+            self.displayMode = .allCountries
+            
+        } else {
+            self.filteredCountriesList = countryGateway.getFilteredCountries(str: searchTxt)
+            self.displayMode = .filteredCountries
+            
+        }
+        
+    }
+    
     func userPressed( at indexPath: IndexPath ){
-//        let photo = self.photos[indexPath.row]
-//        if photo.for_sale {
-//            self.isAllowSegue = true
-//            self.selectedPhoto = photo
-//        }else {
-//            self.isAllowSegue = false
-//            self.selectedPhoto = nil
-//            self.alertMessage = "This item is not for sale"
-//        }
+
+        switch self.displayMode {
+        case .allCountries, .filteredCountries:
+            self.selectedCountry = nil
+            if (self.selectedCountriesList.count < 5){
+                //add to selected countries
+               self.selectCountry(atIndex: indexPath.row)
+                
+            } else {
+                alertMessage = NSLocalizedString("Sorry: You can't add more than 5 countries", comment: "")
+            }
+            
+            //self.displayMode = .selectedCountries
+        case .selectedCountries:
+           self.selectedCountry = displayedCountriesList[indexPath.row]
+            
+        }
         
     }
 }
