@@ -9,13 +9,19 @@
 import Foundation
 import RealmSwift
 
-class LocalCountriesManager{
+protocol LocalCountriesManagerProtocol {
     
-    static var shared = LocalCountriesManager()
+    func getAllCountries() -> [Country]
+    func getSelectedCountries() -> [Country]
+    func getFilteredCountriesBy(name: String) -> [Country]
     
-    private init() {
-        
-    }
+    func selectCountryBy(code: String)
+    func unSelectCountryBy(code: String)
+    
+    func saveCountries(countries: [Country])
+}
+
+class RealmLocalCountriesManager: LocalCountriesManagerProtocol{
     
     func getAllCountries() -> [Country] {
         // Get the default Realm
@@ -44,27 +50,8 @@ class LocalCountriesManager{
             realm.add(countries)
         }
     }
-    func selectCountry (country: Country){
-        // Get the default Realm
-        let realm = try! Realm()
-        let c = realm.objects(Country.self).filter("alpha2Code == '\(country.alpha2Code ?? "")'").first
-
-        try! realm.write {
-            c?.isSelected = true
-        }
-    }
     
-    func unSelectCountry (country: Country){
-        // Get the default Realm
-        let realm = try! Realm()
-        let c = realm.objects(Country.self).filter("alpha2Code == '\(country.alpha2Code ?? "")'").first
-
-        try! realm.write {
-            c?.isSelected = false
-        }
-    }
-    
-    func selectCountryBy (code: String){
+    func selectCountryBy(code: String){
         // Get the default Realm
         let realm = try! Realm()
         let c = realm.objects(Country.self).filter("alpha2Code == '\(code)'").first
@@ -73,7 +60,7 @@ class LocalCountriesManager{
         }
     }
     
-    func unSelectCountryBy (code: String){
+    func unSelectCountryBy(code: String){
         // Get the default Realm
         let realm = try! Realm()
         let c = realm.objects(Country.self).filter("alpha2Code == '\(code)'").first

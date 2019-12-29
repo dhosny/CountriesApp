@@ -12,9 +12,11 @@ import Alamofire
 class CountryGateway {
     
     let apiClient: APIClient
+    let localStorage: LocalCountriesManagerProtocol
     
     init(apiClient: APIClient = APIClient()) {
         self.apiClient = apiClient
+        localStorage = RealmLocalCountriesManager()
     }
     
     private func getAllCountries(completion: @escaping (_ responce : [Country],_ message : String,_ status : Int) -> ()) {
@@ -40,14 +42,14 @@ class CountryGateway {
     }
     
     func getCountries (completion: @escaping (_ responce : [Country],_ message : String,_ status : Int) -> ()){
-        let countries = LocalCountriesManager.shared.getAllCountries()
+        let countries = localStorage.getAllCountries()
         //check number of stored countries
         if (countries.count == 0){
             //load from api
             self.getAllCountries(){ (countries, msg, status) in
                 if status == 1 {
-                //save countries in realm
-                    LocalCountriesManager.shared.saveCountries(countries: countries)
+                    //save countries in realm
+                    self.localStorage.saveCountries(countries: countries)
                 }
                 completion(countries, msg, status)
             }
@@ -58,21 +60,21 @@ class CountryGateway {
     }
     
     func getSelectedCountries () -> [Country]{
-        let countries = LocalCountriesManager.shared.getSelectedCountries()
+        let countries = localStorage.getSelectedCountries()
         return countries
     }
     
     func getFilteredCountries (str: String) -> [Country]{
-        let countries = LocalCountriesManager.shared.getFilteredCountriesBy(name: str)
+        let countries = localStorage.getFilteredCountriesBy(name: str)
         return countries
     }
     
     func selectCountryBy(code: String){
-        LocalCountriesManager.shared.selectCountryBy(code: code)
+        localStorage.selectCountryBy(code: code)
     }
     
     func unselectCountryBy(code: String){
-        LocalCountriesManager.shared.unSelectCountryBy(code: code)
+        localStorage.unSelectCountryBy(code: code)
     }
 
 }
