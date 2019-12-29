@@ -8,13 +8,17 @@
 
 import UIKit
 import SVProgressHUD
+import CoreLocation
 
 class CountryListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
     var searchController: UISearchController!
     
     var viewModel: CountryListViewModel!
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,7 @@ class CountryListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         configSearchBar()
+        getCurrentLocation()
     }
     
     func setAddNavigationBarRightBtn() {
@@ -119,8 +124,9 @@ class CountryListVC: UIViewController {
                     UIView.animate(withDuration: 0.2, animations: {
                         self.navigationItem.title = NSLocalizedString("Selected A Country", comment: "")
                         self.setCancelNavigationBarRightBtn()
-                        self.tableView.tableHeaderView = self.searchController.searchBar
                         self.tableView.setContentOffset( CGPoint(x: 0, y: 0) , animated: true)
+                        self.tableView.tableHeaderView = self.searchController.searchBar
+                        self.searchController.searchBar.isHidden = false
                     })
                 case .selectedCountries:
                     UIView.animate(withDuration: 0.2, animations: {
@@ -128,6 +134,7 @@ class CountryListVC: UIViewController {
                         self.setAddNavigationBarRightBtn()
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                         self.tableView.tableHeaderView = nil
+                        self.searchController.searchBar.isHidden = true
                     })
                 }
                 
@@ -233,6 +240,7 @@ extension CountryListVC {
     }
 }
 
+//  MARK: -- Search Delegate
 extension CountryListVC: UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -242,7 +250,95 @@ extension CountryListVC: UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchController.searchBar.text
-        self.viewModel.userSearchedForCountry(searchTxt: searchText)
+        self.viewModel.userSearchedForCountry(searchTxt: searchString!)
     }
 }
+
+extension CountryListVC: CLLocationManagerDelegate {
+    //MARK: -- Location
+    func getCurrentLocation() {
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined:
+                // Request when-in-use authorization initially
+                // This is the first and the ONLY time you will be able to ask the user for permission
+                self.locationManager.delegate = self
+                locationManager.requestWhenInUseAuthorization()
+                self.viewModel.setLocationService(states: false)
+                break
+                
+            case .restricted, .denied:
+                // Disable location features
+                self.viewModel.setLocationService(states: false)
+                let alert = UIAlertController(title: NSLocalizedString("Allow Location Access", comment: ""), message: NSLocalizedString("MyApp needs access to your location. Turn on Location Services in your device settings.", comment: ""), preferredStyle: UIAlertController.Style.alert)
+                
+                // Button to Open Settings
+                alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)")
+                        })
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+                break
+                
+            case .authorizedWhenInUse, .authorizedAlways:
+                // Enable features that require location services here.
+                print("Full Access")
+                self.viewModel.setLocationService(states: true)
+                locationManager.startUpdatingLocation()
+                break
+            }
+        } else {
+            self.viewModel.setLocationService(states: false)
+            print("Location services are not enabled")
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        self.lookUpCurrentLocation(location: locValue)
+        locationManager.stopUpdatingLocation()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+        self.viewModel.setDefultCountry()
+    }
+    
+    func lookUpCurrentLocation(location : CLLocationCoordinate2D) {
+        // Use the last reported location.
+        
+        let lastLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        let geocoder = CLGeocoder()
+        
+        // Look up the location and pass it to the completion handler
+        geocoder.reverseGeocodeLocation(lastLocation,
+                                        completionHandler: { (placemarks, error) in
+                                            
+                                            if error == nil {
+                                                let pm = placemarks![0]
+                                                self.viewModel.setDefultCountry(code: pm.isoCountryCode!)
+                                            } else {
+                                                self.viewModel.setDefultCountry()
+                                            }
+        })
+    }
+}
+
 

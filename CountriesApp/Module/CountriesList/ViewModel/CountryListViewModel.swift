@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class CountryListViewModel {
 
@@ -17,6 +18,8 @@ class CountryListViewModel {
     private var selectedCountriesList: [Country] = [Country]()
     
     private var filteredCountriesList: [Country] = [Country]()
+    
+    private var isLocationServicesEnabled: Bool = true
     
     var displayMode: DisplayMode = .selectedCountries {
         didSet {
@@ -78,16 +81,28 @@ class CountryListViewModel {
             
             self.countriesList = country
             self.initSelectedCountries()
-            self.displayMode = .selectedCountries
-            self.state = .loaded
+            //self.displayMode = .selectedCountries
+           
         }
     }
     
-    func initSelectedCountries (){
-        //add current country of eg if not detected
-        countryGateway.selectCountryBy(code: "EG")
+    func initSelectedCountries() {
+        if !isLocationServicesEnabled {
+            setDefultCountry()
+        }
+    }
+    
+    func setDefultCountry(code: String = "EG") {
+        //if self.selectedCountriesList.count == 0 {
+        countryGateway.selectCountryBy(code: code)
         //load Selected Countries
         self.selectedCountriesList = self.countryGateway.getSelectedCountries()
+        self.state = .loaded
+        self.displayMode = .selectedCountries
+    }
+    
+    func setLocationService( states: Bool){
+        isLocationServicesEnabled = states
     }
     
     func getCountry(atIndex : Int) -> Country{
