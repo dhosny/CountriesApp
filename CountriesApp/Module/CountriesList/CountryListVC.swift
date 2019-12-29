@@ -125,6 +125,7 @@ class CountryListVC: UIViewController {
                         self.navigationItem.title = NSLocalizedString("Selected A Country", comment: "")
                         self.setCancelNavigationBarRightBtn()
                         self.tableView.setContentOffset( CGPoint(x: 0, y: 0) , animated: true)
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                         self.tableView.tableHeaderView = self.searchController.searchBar
                         self.searchController.searchBar.isHidden = false
                     })
@@ -132,9 +133,11 @@ class CountryListVC: UIViewController {
                     UIView.animate(withDuration: 0.2, animations: {
                         self.navigationItem.title = NSLocalizedString("Country List", comment: "")
                         self.setAddNavigationBarRightBtn()
-                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                         self.tableView.tableHeaderView = nil
                         self.searchController.searchBar.isHidden = true
+                        self.tableView.setContentOffset( CGPoint(x: 0, y: 60.0) , animated: true)
+                        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        
                     })
                 }
                 
@@ -180,7 +183,12 @@ extension CountryListVC: UITableViewDelegate, UITableViewDataSource {
     
     func configCell(cell: inout UITableViewCell, country: Country){
         cell.textLabel!.text = country.name
-        cell.accessoryType = country.isSelected ? .checkmark : .none
+        
+        if ( self.viewModel.displayMode != .selectedCountries){
+            cell.accessoryType = country.isSelected ? .checkmark : .none
+        } else {
+            cell.accessoryType = .disclosureIndicator
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

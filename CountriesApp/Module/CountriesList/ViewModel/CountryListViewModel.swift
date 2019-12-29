@@ -93,7 +93,10 @@ class CountryListViewModel {
     }
     
     func setDefultCountry(code: String = "EG") {
-        //if self.selectedCountriesList.count == 0 {
+        if self.countriesList.count == 0 {
+            self.state = .loaded
+            return
+        }
         countryGateway.selectCountryBy(code: code)
         //load Selected Countries
         self.selectedCountriesList = self.countryGateway.getSelectedCountries()
@@ -155,8 +158,12 @@ extension CountryListViewModel {
         case .allCountries, .filteredCountries:
             self.selectedCountry = nil
             if (self.selectedCountriesList.count < 5){
-                //add to selected countries
-               self.selectCountry(atIndex: indexPath.row)
+                if (!displayedCountriesList[indexPath.row].isSelected){
+                    //add to selected countries
+                    self.selectCountry(atIndex: indexPath.row)
+                } else {
+                    alertMessage = NSLocalizedString("Sorry: This country is already added", comment: "")
+                }
                 
             } else {
                 alertMessage = NSLocalizedString("Sorry: You can't add more than 5 countries", comment: "")

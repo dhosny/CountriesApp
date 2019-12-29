@@ -37,7 +37,7 @@ class APIClient {
                     break
                 case.failure(let error):
                     print(error)
-                     completion([["":""]], false, NSLocalizedString("Problem in server side please wait and try again later.", comment: "") )
+                     completion([["":""]], false, NSLocalizedString("Problem in internet connection please wait and try again later.", comment: "") )
                     
                     break
                 }

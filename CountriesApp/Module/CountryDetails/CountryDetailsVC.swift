@@ -11,12 +11,16 @@ import UIKit
 class CountryDetailsVC: UIViewController {
     
     var country: Country!
-
+    var viewModel: CountryDetailsViewModel!
+    
     @IBOutlet weak var capitalLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = CountryDetailsViewModel(country: country)
+        
         initView()
     }
     
@@ -35,14 +39,15 @@ extension CountryDetailsVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return NSLocalizedString("Currencies: ", comment: "")
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return country.currencies.count
+        return viewModel.numberOfCells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "currencyCell", for: indexPath)
         
-        cell.textLabel!.text = country.currencies[indexPath.row].name
+        cell.textLabel!.text = viewModel.getCurrency(atIndex: indexPath.row)
         
         return cell
     }

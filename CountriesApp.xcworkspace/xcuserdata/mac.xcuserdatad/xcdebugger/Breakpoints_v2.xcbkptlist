@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.368588"
+            timestampString = "599349952.01062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.3687069"
+            timestampString = "599349952.010765"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.368804"
+            timestampString = "599349952.010875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.369114"
+            timestampString = "599349952.011153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/CountryListVC.swift"
-            timestampString = "599280512.369312"
+            timestampString = "599349952.011333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.369977"
+            timestampString = "599349952.011453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "userSearchedForCountry(searchTxt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.3700711"
+            timestampString = "599349952.0115629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "userSearchedForCountry(searchTxt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.37016"
+            timestampString = "599349952.0116709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "userPressed(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.37025"
+            timestampString = "599349952.011777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "userPressed(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.370337"
+            timestampString = "599349952.0118819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "userSearchedForCountry(searchTxt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.3704261"
+            timestampString = "599349952.011987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -314,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/CountryListVC.swift"
-            timestampString = "599280512.370509"
+            timestampString = "599349952.012089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/CountryListVC.swift"
-            timestampString = "599280512.37093"
+            timestampString = "599349952.012198"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "lookUpCurrentLocation(location:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -342,16 +342,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CountriesApp/Module/CountriesList/ViewModel/CountryListViewModel.swift"
-            timestampString = "599280512.37133"
+            timestampString = "599349952.0122941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "setDefultCountry(code:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountriesApp/Module/CountriesList/CountryListVC.swift"
+            timestampString = "599349952.012388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "initVM()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CountriesApp/Module/CountriesList/CountryListVC.swift"
+            timestampString = "599349952.012475"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "initVM()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
