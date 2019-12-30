@@ -14,6 +14,8 @@ class CountryListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var editBtn: UIButton!
+    
     var searchController: UISearchController!
     
     var viewModel: CountryListViewModel!
@@ -42,6 +44,22 @@ class CountryListVC: UIViewController {
         tableView.dataSource = self
         
         configSearchBar()
+    }
+    func setEditNavigationBarBtn() {
+        if viewModel.displayMode == .selectedCountries {
+            editBtn = UIButton()
+            editBtn.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+            editBtn.setTitle(NSLocalizedString("Edit", comment: ""), for: .normal)
+            editBtn.setTitleColor(.black, for: .normal)
+            editBtn.tag = 0
+            editBtn.addTarget(self, action: #selector(editCountryBtnPressed), for: .touchUpInside)
+            let editBar = UIBarButtonItem(customView: editBtn)
+            self.navigationItem.leftBarButtonItems = [editBar]
+            self.tableView.setEditing(false, animated: true)
+        } else {
+            self.navigationItem.leftBarButtonItems = []
+        }
+            
     }
     
     func setAddNavigationBarRightBtn() {
@@ -124,6 +142,8 @@ class CountryListVC: UIViewController {
                 guard let self = self else {
                     return
                 }
+
+                self.setEditNavigationBarBtn()
                 switch self.viewModel.displayMode {
                 case .allCountries, .filteredCountries:
                     UIView.animate(withDuration: 0.2, animations: {
@@ -132,6 +152,7 @@ class CountryListVC: UIViewController {
                         self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                         self.navigationItem.searchController = self.searchController
                         self.navigationItem.hidesSearchBarWhenScrolling = false
+                        self.tableView.setEditing(false, animated: true)
                     })
                 case .selectedCountries:
                     UIView.animate(withDuration: 0.2, animations: {
@@ -234,6 +255,14 @@ extension CountryListVC {
     @objc func addCountryBtnPressed (sender: Any){
         self.searchController.searchBar.text = ""
         viewModel.userPressedAddBtn()
+    }
+    
+    @objc func editCountryBtnPressed (sender: UIButton){
+        let tag = sender.tag //0 editing, 1 done
+        let btnTitle = (tag == 0) ? NSLocalizedString("Done", comment: "") : NSLocalizedString("Edit", comment: "")
+        self.editBtn.tag = (tag + 1) % 2
+        self.editBtn.setTitle(btnTitle, for: .normal)
+        self.tableView.setEditing((tag == 0 ), animated: true)
     }
     
     @objc func cancelAddCountryBtnPressed (sender: Any){
